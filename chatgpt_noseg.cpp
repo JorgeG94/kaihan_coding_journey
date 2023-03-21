@@ -3,11 +3,18 @@
 #include <omp.h>
 using namespace std;
 
-const int SIZE = 4000;
+const int SIZE = 1500;
 
 void multiply_matrices(int** A, int** B, int** C) {
     int num_threads;
-    #pragma omp parallel for collapse(3) num_threads(16) 
+    int thread_id;
+#pragma omp parallel 
+    {
+    thread_id = omp_get_thread_num();
+    if(thread_id == 0) 
+     std::cout << " we are using " << omp_get_num_threads() << " threads " << std::endl;
+
+    #pragma omp for collapse(3)
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             for (int k = 0; k < SIZE; k++) {
@@ -15,6 +22,7 @@ void multiply_matrices(int** A, int** B, int** C) {
             }
         }
     }
+}
 }
 
 
