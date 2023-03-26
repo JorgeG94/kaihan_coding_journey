@@ -3,7 +3,7 @@
 #include <omp.h>
 using namespace std;
 
-const int SIZE = 1500;
+const int SIZE = 10000;
 
 void multiply_matrices(int** A, int** B, int** C) {
     int num_threads;
@@ -41,8 +41,8 @@ int main() {
     // initialize matrices A and B
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            A[i][j] = i + j;
-            B[i][j] = i - j;
+            A[i][j] = i ;
+            B[i][j] = i ;
 	    C[i][j] = 0;
         }
     }
